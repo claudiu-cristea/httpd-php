@@ -7,12 +7,23 @@ variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
   CONTAINER_STABLE_IMAGE: $CI_REGISTRY_IMAGE:stable
 
+stages:
+  - buildsupervisord
+  - build
+
+
 .buildcontainers: &buildcontainers
   - docker build --pull --build-arg php_version=$PHP_VERSION --target httpd-php -t fpfis/httpd-php:$PHP_VERSION .
-  - docker push fpfis/httpd-php:$PHP_VERSION
+  - docker push $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION
 
 before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+
+buildsupervisord:
+  stage: buildsupervisord
+  script:
+    - docker build --pull --target supervisord -t supervisord .
+
 
 build_56:
   stage: build
