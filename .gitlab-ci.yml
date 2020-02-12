@@ -13,7 +13,9 @@ stages:
 
 
 .buildcontainers: &buildcontainers
-  - docker build --pull --build-arg php_version=$PHP_VERSION --target httpd-php -t fpfis/httpd-php:$PHP_VERSION .
+  - docker images
+  - docker ps
+  - docker build --pull --build-arg php_version=$PHP_VERSION --target httpd-php -t fpfis/httpd-php:$PHP_VERSION -t $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION .
   - docker push $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION
 
 before_script:
