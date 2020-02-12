@@ -8,8 +8,8 @@ variables:
   CONTAINER_STABLE_IMAGE: $CI_REGISTRY_IMAGE:stable
 
 .buildcontainers: &buildcontainers
-  - docker build --pull --target httpd-php -t fpfis/httpd-php:$PHP_VERSION .
-  - docker push
+  - docker build --pull --build-arg PHP_VERSION=$PHP_VERSION --target httpd-php -t fpfis/httpd-php:$PHP_VERSION .
+  - docker push fpfis/httpd-php:$PHP_VERSION
 
 before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
