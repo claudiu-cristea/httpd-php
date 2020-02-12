@@ -14,9 +14,47 @@ variables:
 before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
+build_56:
+  stage: build
+  variables:
+    PHP_VERSION: "5.6"
+  script:
+    *buildcontainers
+
+build_71:
+  stage: build
+  variables:
+    PHP_VERSION: "7.1"
+  script:
+    *buildcontainers
+
+build_72:
+  stage: build
+  variables:
+    PHP_VERSION: "7.2"
+  script:
+    *buildcontainers
+
+build_73:
+  stage: build
+  variables:
+    PHP_VERSION: "7.3"
+  script:
+    *buildcontainers
+
 build_74:
   stage: build
   variables:
     PHP_VERSION: "7.4"
   script:
     *buildcontainers
+
+
+build_74:
+  stage: build
+  variables:
+    PHP_VERSION: "7.4"
+  script:
+    *buildcontainers
+
+  
