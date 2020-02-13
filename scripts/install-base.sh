@@ -14,7 +14,7 @@ apt-get dist-upgrade -y
 apt-get install -y software-properties-common
 add-apt-repository -y ppa:ondrej/php
 
-if [ echo $php_version | awk '{if ($1 > 7.1) print 1; else print 0}' ] 
+if [ "${php_version}" != "5.6" ] || [ "${php_version}" != "7.1" ] 
 then
 	php_modules=$(echo ${php_modules} | sed 's/mcrypt//')
 fi
