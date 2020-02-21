@@ -25,6 +25,7 @@ buildsupervisord:
   stage: buildsupervisord
   script:
     - docker build --pull --target supervisord -t supervisord .
+    - docker push $CI_REGISTRY/fpfis/supervisord:latest
 
 
 build_56:
