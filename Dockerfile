@@ -30,7 +30,7 @@ ENV php_version=${php_version} \
     DOCUMENT_ROOT=/var/www/html \
     APACHE_EXTRA_CONF="" \
     APACHE_EXTRA_CONF_DIR=""
-    composer_version=${composer_version}
+    
     
 # Add our setup scripts and run the base one
 ADD scripts/run.sh scripts/install-base.sh /scripts/
