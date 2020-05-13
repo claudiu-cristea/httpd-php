@@ -12,6 +12,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG php_version="5.6"
 ARG php_modules="sqlite curl soap bz2 calendar exif mysql opcache zip xsl intl mcrypt yaml mbstring ldap sockets iconv gd redis memcached tidy"
 ARG apache2_modules="proxy_fcgi setenvif rewrite"
+ARG composer_version="1.9.3"
 
 # Default configuration and environment
 ENV php_version=${php_version} \
@@ -29,7 +30,8 @@ ENV php_version=${php_version} \
     DOCUMENT_ROOT=/var/www/html \
     APACHE_EXTRA_CONF="" \
     APACHE_EXTRA_CONF_DIR=""
-
+    composer_version=${composer_version}
+    
 # Add our setup scripts and run the base one
 ADD scripts/run.sh scripts/install-base.sh /scripts/
 RUN /scripts/install-base.sh
