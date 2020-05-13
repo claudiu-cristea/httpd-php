@@ -8,8 +8,7 @@ variables:
   CONTAINER_STABLE_IMAGE: $CI_REGISTRY_IMAGE:stable
 
 stages:
-  - buildsupervisord
-  - build
+    - build
 
 
 .buildcontainers: &buildcontainers
@@ -21,11 +20,6 @@ stages:
 before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
-buildsupervisord:
-  stage: buildsupervisord
-  script:
-    - docker build --pull --target supervisord -t $CI_REGISTRY/fpfis/supervisord .
-    - docker push $CI_REGISTRY/fpfis/supervisord:latest
 
 
 build_56:
