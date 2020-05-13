@@ -43,7 +43,7 @@ ADD apache2_conf /etc/apache2
 ADD php_conf /etc/php/${php_version}/mods-available
 ADD phpfpm_conf /etc/php/${php_version}/fpm/pool.d
 ADD supervisor_conf/supervisord.conf /etc/supervisor/
-COPY --from=supervisord /go/bin/supervisord /usr/bin/
+COPY --from=registry.fpfis.eu/fpfis/supervisord:latest /go/bin/supervisord /usr/bin/
 
 # Enable our specific configuration
 RUN phpenmod 90-common 95-prod && \
