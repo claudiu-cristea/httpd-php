@@ -57,12 +57,3 @@ build_74:
   script:
     *buildcontainers
 
-
-build_74:
-  stage: build
-  variables:
-    PHP_VERSION: "7.4"
-  script:
-    *buildcontainers
-
-  
