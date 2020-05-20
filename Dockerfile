@@ -1,9 +1,3 @@
-## go version of supervisord. Less dependencies and faster
-
-FROM golang as supervisord
-
-RUN go get -v github.com/ochinchina/supervisord
-
 ## Base PHP image :
 FROM ubuntu as httpd-php
 
