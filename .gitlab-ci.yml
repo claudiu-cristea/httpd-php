@@ -46,7 +46,7 @@ stages:
 
 
 .buildscript: &buildscript
-  - docker build --pull --build-arg php_version=$PHP_VERSION --build-arg oci8_version=$OCI8_VERSION --target httpd-php$IMAGE -t fpfis/httpd-php$IMAGE:$PHP_VERSION -t $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION$IMAGE .
+  - docker build --pull --build-arg php_version=$PHP_VERSION --build-arg oci8_version=$OCI8_VERSION --target httpd-php$IMAGE -t fpfis/httpd-php$IMAGE:$PHP_VERSION -t $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION$IMAGE -t fpfis/httpd-php:$PHP_VERSION$IMAGE .
   - docker push $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION$IMAGE
 
 before_script:
@@ -131,3 +131,48 @@ full:74:
     *buildscript
   dependencies:
     - base:74
+
+ci:56:
+  stage: ci
+  variables:
+    <<: [ *php56, *ciimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:56
+
+ci:71:
+  stage: ci
+  variables:
+    <<: [ *php71, *ciimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:71
+
+ci:72:
+  stage: ci
+  variables:
+    <<: [ *php72, *ciimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:72
+
+ci:73:
+  stage: ci
+  variables:
+    <<: [ *php73, *ciimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:73
+
+ci:74:
+  stage: ci
+  variables:
+    <<: [ *php74, *ciimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:74
