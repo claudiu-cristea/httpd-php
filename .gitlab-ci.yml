@@ -221,3 +221,93 @@ dev:74:
     *buildscript
   dependencies:
     - ci:74
+
+oci:56:
+  stage: oci
+  variables:
+    <<: [ *php56, *ociimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:56
+
+oci:71:
+  stage: oci
+  variables:
+    <<: [ *php71, *ociimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:71
+
+oci:72:
+  stage: oci
+  variables:
+    <<: [ *php72, *ociimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:72
+
+oci:73:
+  stage: oci
+  variables:
+    <<: [ *php73, *ociimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:73
+
+oci:74:
+  stage: oci
+  variables:
+    <<: [ *php74, *ociimage ]
+  script:
+    *buildscript
+  dependencies:
+    - full:74
+
+ocidev:56:
+  stage: ocidev
+  variables:
+    <<: [ *php56, *ocidevimage ]
+  script:
+    *buildscript
+  dependencies:
+    - dev:56
+
+ocidev:71:
+  stage: ocidev
+  variables:
+    <<: [ *php71, *ocidevimage ]
+  script:
+    *buildscript
+  dependencies:
+    - dev:71
+
+ocidev:72:
+  stage: ocidev
+  variables:
+    <<: [ *php72, *ocidevimage ]
+  script:
+    *buildscript
+  dependencies:
+    - dev:72
+
+ocidev:73:
+  stage: ocidev
+  variables:
+    <<: [ *php73, *ocidevimage ]
+  script:
+    *buildscript
+  dependencies:
+    - dev:73
+
+ocidev:74:
+  stage: ocidev
+  variables:
+    <<: [ *php74, *ocidevimage ]
+  script:
+    *buildscript
+  dependencies:
+    - dev:74
