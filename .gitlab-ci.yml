@@ -55,35 +55,35 @@ before_script:
 base:56:
   stage: base
   variables:
-    <<: [ *php56, *baseimage ]
+    <<: *php56
   script:
     *buildscript
 
 base:71:
   stage: base
   variables:
-    <<: [ *php71, *baseimage ]
+    <<: *php71
   script:
     *buildscript
 
 base:72:
   stage: base
   variables:
-    <<: [ *php72, *baseimage ]
+    <<: *php72
   script:
     *buildscript
 
 base:73:
   stage: base
   variables:
-    <<: [ *php73, *baseimage ]
+    <<: *php73
   script:
     *buildscript
 
 base:74:
   stage: base
   variables:
-    <<: [ *php74, *baseimage ]
+    <<: *php74
   script:
     *buildscript
 
