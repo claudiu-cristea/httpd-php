@@ -27,7 +27,8 @@ variables:
 
 .baseimage: &baseimage
   IMAGE: "httpd-php"
-
+.fullimage: &fullimage
+  IMAGE: "httpd-php"
 
 stages:
     - base
@@ -79,3 +80,48 @@ base_74:
     <<: [ *php74, *baseimage ]
   script:
     *buildscript
+
+full_56:
+  stage: full
+  variables:
+    <<: [ *php56, *fullimage ]
+  script:
+    *buildscript
+  dependencies:
+    - base:base_56
+
+full_71:
+  stage: full
+  variables:
+    <<: [ *php71, *fullimage ]
+  script:
+    *buildscript
+  dependencies:
+    - base:base_71
+
+full_72:
+  stage: full
+  variables:
+    <<: [ *php72, *fullimage ]
+  script:
+    *buildscript
+  dependencies:
+    - base:base_72
+
+full_73:
+  stage: full
+  variables:
+    <<: [ *php73, *fullimage ]
+  script:
+    *buildscript
+  dependencies:
+    - base:base_73
+
+full_74:
+  stage: full
+  variables:
+    <<: [ *php74, *fullimage ]
+  script:
+    *buildscript
+  dependencies:
+    - base:base_74
