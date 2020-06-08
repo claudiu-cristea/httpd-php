@@ -28,7 +28,7 @@ variables:
 .baseimage: &baseimage
   IMAGE: "httpd-php"
 .fullimage: &fullimage
-  IMAGE: "httpd-php"
+  IMAGE: "httpd-php-full"
 
 stages:
     - base
