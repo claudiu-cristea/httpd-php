@@ -7,25 +7,25 @@ variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
   CONTAINER_STABLE_IMAGE: $CI_REGISTRY_IMAGE:stable
 
-php56: &php56
+.php56: &php56
   PHP_VERSION: "5.6"
-php71: &php71
+.php71: &php71
   PHP_VERSION: "7.1"
-php72: &php72
+.php72: &php72
   PHP_VERSION: "7.2"
-php73: &php73
+.php73: &php73
   PHP_VERSION: "7.3"
-php74: &php74
+.php74: &php74
   PHP_VERSION: "7.1"
             
-oci20: &oci20
+.oci20: &oci20
   OCI8_VERSION: "2.0.12"
-oci21: &oci21
+.oci21: &oci21
   OCI8_VERSION: "2.1.8"
-oci22: &oci22
+.oci22: &oci22
   OCI8_VERSION: "2.2.0"
 
-baseimage: &baseimage
+.baseimage: &baseimage
   IMAGE: "httpd-php"
 
 
@@ -38,7 +38,7 @@ stages:
     - oci-dev
 
 
-.buildcontainers: &buildscript
+.buildscript: &buildscript
   - docker build --pull --build-arg php_version=$PHP_VERSION --build-arg oci8_version=$OCI8_VERSION --target $IMAGE -t fpfis/$IMAGE:$PHP_VERSION -t $CI_REGISTRY/fpfis/$IMAGE:$PHP_VERSION .
   - docker push $CI_REGISTRY/fpfis/$IMAGE:$PHP_VERSION
 
