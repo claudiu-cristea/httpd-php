@@ -46,82 +46,82 @@ stages:
 before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
-base_56:
+base:56:
   stage: base
   variables:
     <<: [ *php56, *baseimage ]
   script:
     *buildscript
 
-base_71:
+base:71:
   stage: base
   variables:
     <<: [ *php71, *baseimage ]
   script:
     *buildscript
 
-base_72:
+base:72:
   stage: base
   variables:
     <<: [ *php72, *baseimage ]
   script:
     *buildscript
 
-base_73:
+base:73:
   stage: base
   variables:
     <<: [ *php73, *baseimage ]
   script:
     *buildscript
 
-base_74:
+base:74:
   stage: base
   variables:
     <<: [ *php74, *baseimage ]
   script:
     *buildscript
 
-full_56:
+full:56:
   stage: full
   variables:
     <<: [ *php56, *fullimage ]
   script:
     *buildscript
   dependencies:
-    - base:base_56
+    - base:56
 
-full_71:
+full:71:
   stage: full
   variables:
     <<: [ *php71, *fullimage ]
   script:
     *buildscript
   dependencies:
-    - base:base_71
+    - base:71
 
-full_72:
+full:72:
   stage: full
   variables:
     <<: [ *php72, *fullimage ]
   script:
     *buildscript
   dependencies:
-    - base:base_72
+    - base:72
 
-full_73:
+full:73:
   stage: full
   variables:
     <<: [ *php73, *fullimage ]
   script:
     *buildscript
   dependencies:
-    - base:base_73
+    - base:73
 
-full_74:
+full:74:
   stage: full
   variables:
     <<: [ *php74, *fullimage ]
   script:
     *buildscript
   dependencies:
-    - base:base_74
+    - base:74
