@@ -42,7 +42,7 @@ stages:
     - ci
     - dev
     - oci
-    - oci-dev
+    - ocidev
 
 
 .buildscript: &buildscript
