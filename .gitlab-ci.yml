@@ -8,34 +8,25 @@ variables:
   CONTAINER_STABLE_IMAGE: $CI_REGISTRY_IMAGE:stable
 
 php56: &php56
-  variables:
-    - PHP_VERSION: "5.6"
+  PHP_VERSION: "5.6"
 php71: &php71
-  variables:
-    - PHP_VERSION: "7.1"
+  PHP_VERSION: "7.1"
 php72: &php72
-  variables:
-    - PHP_VERSION: "7.2"
+  PHP_VERSION: "7.2"
 php73: &php73
-  variables:
-    - PHP_VERSION: "7.3"
+  PHP_VERSION: "7.3"
 php74: &php74
-  variables:
-    - PHP_VERSION: "7.1"
+  PHP_VERSION: "7.1"
             
 oci20: &oci20
-  variables:
-    - OCI8_VERSION: "2.0.12"
+  OCI8_VERSION: "2.0.12"
 oci21: &oci21
-    variables:
-      - OCI8_VERSION: "2.1.8"
+  OCI8_VERSION: "2.1.8"
 oci22: &oci22
-  variables:
-    - OCI8_VERSION: "2.2.0"
+  OCI8_VERSION: "2.2.0"
 
 baseimage: &baseimage
-  variables:
-    - IMAGE: "httpd-php"
+  IMAGE: "httpd-php"
 
 
 stages:
@@ -56,30 +47,35 @@ before_script:
 
 base_56:
   stage: base
-  <<: [ *php56, *baseimage ]
+  variables:
+    <<: [ *php56, *baseimage ]
   script:
     *buildscript
 
 base_71:
   stage: base
-  <<: [ *php71, *baseimage ]
+  variables:
+    <<: [ *php71, *baseimage ]
   script:
     *buildscript
 
 base_72:
   stage: base
-  <<: [ *php72, *baseimage ]
+  variables:
+    <<: [ *php72, *baseimage ]
   script:
     *buildscript
 
 base_73:
   stage: base
-  <<: [ *php73, *baseimage ]
+  variables:
+    <<: [ *php73, *baseimage ]
   script:
     *buildscript
 
 base_74:
   stage: base
-  <<: [ *php74, *baseimage ]
+  variables:
+    <<: [ *php74, *baseimage ]
   script:
     *buildscript
