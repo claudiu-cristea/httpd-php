@@ -1,5 +1,5 @@
 ## Base PHP image :
-FROM ubuntu as httpd-php
+FROM ubuntu:18.04 as httpd-php
 
 # Build arguments
 ENV DEBIAN_FRONTEND=noninteractive
@@ -11,21 +11,24 @@ ARG composer_version="1.9.3"
 # Default configuration and environment
 ENV php_version=${php_version} \
     FPM_MAX_CHILDREN=5 \
-    FPM_MIN_CHILDREN=1 \
+    FPM_TIMEOUT=10 \
+    FPM_MAX_REQUEST=500 \
     DAEMON_USER=www-data \
     DAEMON_GROUP=www-data \
     HTTP_PORT=8080 \
     PHP_MAX_EXECUTION_TIME=120 \
     PHP_MAX_INPUT_TIME=120 \
     PHP_MEMORY_LIMIT=512M \
+    PHP_UPLOAD_MAX_FILESIZE=200M \
+    PHP_POST_MAX_SIZE=220M \
     SITE_PATH=/ \
     SMTP_PORT=25 \
     SMTP_FROM=www-data@localhost \
     DOCUMENT_ROOT=/var/www/html \
     APACHE_EXTRA_CONF="" \
-    APACHE_EXTRA_CONF_DIR=""
-    
-    
+    APACHE_EXTRA_CONF_DIR="" \
+    composer_version=${composer_version}
+
 # Add our setup scripts and run the base one
 ADD scripts/run.sh scripts/install-base.sh /scripts/
 RUN /scripts/install-base.sh
