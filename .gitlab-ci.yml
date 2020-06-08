@@ -56,30 +56,30 @@ before_script:
 
 base_56:
   stage: base
-  << [ *php56, *baseimage ]
+  <<: [ *php56, *baseimage ]
   script:
     *buildscript
 
 base_71:
   stage: base
-  << [ *php71, *baseimage ]
+  <<: [ *php71, *baseimage ]
   script:
     *buildscript
 
 base_72:
   stage: base
-  << [ *php72, *baseimage ]
+  <<: [ *php72, *baseimage ]
   script:
     *buildscript
 
 base_73:
   stage: base
-  << [ *php73, *baseimage ]
+  <<: [ *php73, *baseimage ]
   script:
     *buildscript
 
 base_74:
   stage: base
-  << [ *php74, *baseimage ]
+  <<: [ *php74, *baseimage ]
   script:
     *buildscript
