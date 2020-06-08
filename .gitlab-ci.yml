@@ -176,3 +176,48 @@ ci:74:
     *buildscript
   dependencies:
     - full:74
+
+dev:56:
+  stage: dev
+  variables:
+    <<: [ *php56, *devimage ]
+  script:
+    *buildscript
+  dependencies:
+    - ci:56
+
+dev:71:
+  stage: dev
+  variables:
+    <<: [ *php71, *devimage ]
+  script:
+    *buildscript
+  dependencies:
+    - ci:71
+
+dev:72:
+  stage: dev
+  variables:
+    <<: [ *php72, *devimage ]
+  script:
+    *buildscript
+  dependencies:
+    - ci:72
+
+dev:73:
+  stage: dev
+  variables:
+    <<: [ *php73, *devimage ]
+  script:
+    *buildscript
+  dependencies:
+    - ci:73
+
+dev:74:
+  stage: dev
+  variables:
+    <<: [ *php74, *devimage ]
+  script:
+    *buildscript
+  dependencies:
+    - ci:74
