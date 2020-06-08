@@ -7,53 +7,79 @@ variables:
   CONTAINER_RELEASE_IMAGE: $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
   CONTAINER_STABLE_IMAGE: $CI_REGISTRY_IMAGE:stable
 
+php56: &php56
+  variables:
+    - PHP_VERSION: "5.6"
+php71: &php71
+  variables:
+    - PHP_VERSION: "7.1"
+php72: &php72
+  variables:
+    - PHP_VERSION: "7.2"
+php73: &php73
+  variables:
+    - PHP_VERSION: "7.3"
+php74: &php74
+  variables:
+    - PHP_VERSION: "7.1"
+            
+oci20: &oci20
+  variables:
+    - OCI8_VERSION: "2.0.12"
+oci21: &oci21
+    variables:
+      - OCI8_VERSION: "2.1.8"
+oci22: &oci22
+  variables:
+    - OCI8_VERSION: "2.2.0"
+
+baseimage: &baseimage
+  variables:
+    - IMAGE: "httpd-php"
+
+
 stages:
-    - build
+    - base
+    - full
+    - ci
+    - dev
+    - oci
+    - oci-dev
 
 
-.buildcontainers: &buildcontainers
-  - docker images
-  - docker ps
-  - docker build --pull --build-arg php_version=$PHP_VERSION --target httpd-php -t fpfis/httpd-php:$PHP_VERSION -t $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION .
-  - docker push $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION
+.buildcontainers: &buildscript
+  - docker build --pull --build-arg php_version=$PHP_VERSION --build-arg oci8_version=$OCI8_VERSION --target $IMAGE -t fpfis/$IMAGE:$PHP_VERSION -t $CI_REGISTRY/fpfis/$IMAGE:$PHP_VERSION .
+  - docker push $CI_REGISTRY/fpfis/$IMAGE:$PHP_VERSION
 
 before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
 
-
-
-build_56:
-  stage: build
-  variables:
-    PHP_VERSION: "5.6"
+base_56:
+  stage: base
+  << [ *php56, *baseimage ]
   script:
-    *buildcontainers
+    *buildscript
 
-build_71:
-  stage: build
-  variables:
-    PHP_VERSION: "7.1"
+base_71:
+  stage: base
+  << [ *php71, *baseimage ]
   script:
-    *buildcontainers
+    *buildscript
 
-build_72:
-  stage: build
-  variables:
-    PHP_VERSION: "7.2"
+base_72:
+  stage: base
+  << [ *php72, *baseimage ]
   script:
-    *buildcontainers
+    *buildscript
 
-build_73:
-  stage: build
-  variables:
-    PHP_VERSION: "7.3"
+base_73:
+  stage: base
+  << [ *php73, *baseimage ]
   script:
-    *buildcontainers
+    *buildscript
 
-build_74:
-  stage: build
-  variables:
-    PHP_VERSION: "7.4"
+base_74:
+  stage: base
+  << [ *php74, *baseimage ]
   script:
-    *buildcontainers
-
+    *buildscript
