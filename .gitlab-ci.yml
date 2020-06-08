@@ -16,7 +16,7 @@ variables:
 .php73: &php73
   PHP_VERSION: "7.3"
 .php74: &php74
-  PHP_VERSION: "7.1"
+  PHP_VERSION: "7.4"
             
 .oci20: &oci20
   OCI8_VERSION: "2.0.12"
