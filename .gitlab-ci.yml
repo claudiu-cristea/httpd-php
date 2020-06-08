@@ -25,10 +25,16 @@ variables:
 .oci22: &oci22
   OCI8_VERSION: "2.2.0"
 
-.baseimage: &baseimage
-  IMAGE: "httpd-php"
 .fullimage: &fullimage
-  IMAGE: "httpd-php-full"
+  IMAGE: "-full"
+.ciimage: &ciimage
+  IMAGE: "-ci"
+.devimage: &devimage
+  IMAGE: "-dev"
+.ociimage: &ociimage
+  IMAGE: "-oci"
+.ocidevimage: &ocidevimage
+  IMAGE: "-oci-dev"
 
 stages:
     - base
@@ -40,7 +46,7 @@ stages:
 
 
 .buildscript: &buildscript
-  - docker build --pull --build-arg php_version=$PHP_VERSION --build-arg oci8_version=$OCI8_VERSION --target $IMAGE -t fpfis/$IMAGE:$PHP_VERSION -t $CI_REGISTRY/fpfis/$IMAGE:$PHP_VERSION .
+  - docker build --pull --build-arg php_version=$PHP_VERSION --build-arg oci8_version=$OCI8_VERSION --target httpd-php$IMAGE -t fpfis/httpd-php$IMAGE:$PHP_VERSION -t $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION$IMAGE .
   - docker push $CI_REGISTRY/fpfis/$IMAGE:$PHP_VERSION
 
 before_script:
