@@ -51,6 +51,7 @@ stages:
 
 before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker login -u $dockerio_user -p $dockerio_password
 
 #####
 # Base
