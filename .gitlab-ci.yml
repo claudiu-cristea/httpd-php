@@ -48,6 +48,8 @@ stages:
 .buildscript: &buildscript
   - docker build --pull --build-arg php_version=$PHP_VERSION --build-arg oci8_version=$OCI8_VERSION --target httpd-php$IMAGE -t fpfis/httpd-php$IMAGE:$PHP_VERSION -t $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION$IMAGE -t fpfis/httpd-php:$PHP_VERSION$IMAGE .
   - docker push $CI_REGISTRY/fpfis/httpd-php:$PHP_VERSION$IMAGE
+  - docker push fpfis/httpd-php$IMAGE:$PHP_VERSION
+  - docker push fpfis/httpd-php:$PHP_VERSION$IMAGE
 
 before_script:
     - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
