@@ -21,7 +21,7 @@ fi
 
 modules=$(printf "php${php_version}-%s " ${php_modules})
 
-apt-get install -y apache2 php${php_version}-fpm ${modules} libio-socket-ssl-perl,libemail-simple-perl
+apt-get install -y apache2 php${php_version}-fpm ${modules} libio-socket-ssl-perl libemail-simple-perl
 
 apt-get autoremove software-properties-common -y --purge
 apt-get clean
