@@ -32,12 +32,10 @@ my $mailin = <STDIN>;
 
 my $email = Email::Simple->new($mailin);
 
-my $header = $email->header_obj;
-
 my @rcpt;
 
 foreach ($email->header("to")){
-  if ($_ = /.*<(.*?)>/){
+  if ($_ =~ /.*<(.*?)>/){
     push(@rcpt,$1);
   }
   else{
@@ -46,7 +44,7 @@ foreach ($email->header("to")){
 }
 
 foreach ($email->header("cc")){
-  if ($_ = /.*<(.*?)>/){
+  if ($_ =~ /.*<(.*?)>/){
     push (@rcpt,$1);
   }
   else{
@@ -55,7 +53,7 @@ foreach ($email->header("cc")){
 }
 
 foreach ($email->header("bcc")){
-  if ($_ = /.*<(.*?)>/){
+  if ($_ =~ /.*<(.*?)>/){
     push(@rcpt,$1);
   }
   else{
