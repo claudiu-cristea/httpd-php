@@ -39,28 +39,28 @@ my @rcpt;
 
 foreach ($email->header("to")){
   if ($_ = /.*<(.*?)>/){
-    push @rcpt $1;
+    push(@rcpt,$1);
   }
   else{
-    push @rcpt $_
+    push(@rcpt,$_);
   }
 }
 
 foreach ($email->header("cc")){
   if ($_ = /.*<(.*?)>/){
-    push @rcpt $1;
+    push (@rcpt,$1);
   }
   else{
-    push @rcpt $_
+    push (@rcpt,$_);
   }
 }
 
 foreach ($email->header("bcc")){
   if ($_ = /.*<(.*?)>/){
-    push @rcpt $1;
+    push(@rcpt,$1);
   }
   else{
-    push @rcpt $_
+    push(@rcpt,$_);
   }
 }
 
