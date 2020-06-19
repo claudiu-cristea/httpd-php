@@ -4,7 +4,6 @@
 use Net::SMTP;
 use Email::Simple;
 use warnings;
-use feature 'say';
 
 ##INIT SMTP Parameters
 if(defined $ENV{SMTP_SERVER}){
@@ -64,15 +63,11 @@ foreach ($email->header("bcc")){
   }
 }
 
-if($ENV{SMTP_KEEP_FROM}){
-  $emailfrom = $email->header("from");
-}
-
 if($debug){
   if ($debug_file){
-    open(mailout, '>>', $debug_file) or die $!;
-    print mailout "$mail"; # Print each entry in our array to the file
-    close(mailout);
+    open(my $mailout, '>>', $debug_file) or die $!;
+    print $mailout $email->as_string; # Print each entry in our array to the file
+    close($mailout);
   }
   if($debug_mhserver){ ## Send Mail also to a mailhog server (or other configured)
     $mhsmtp = Net::SMTP->new($debug_mhserver, Port=>$debug_mhport) or die "Unable to contact SMTP Server";
@@ -96,7 +91,7 @@ if($debug){
   
 }
 
-$smtp = Net::SMTP->new($mailhost, Port=>$mailport, Debug=>1) or die "Unable to contact SMTP Server";
+$smtp = Net::SMTP->new($mailhost, Port=>$mailport) or die "Unable to contact SMTP Server";
 if ($starttls){
   $smtp->starttls;
 }
