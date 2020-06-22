@@ -33,6 +33,7 @@ ENV php_version=${php_version} \
 ADD scripts/run.sh scripts/install-base.sh /scripts/
 RUN /scripts/install-base.sh
 ADD scripts/sendmail.pl /scripts/
+RUN chmod a+x /scripts/sendmail.pl
 
 # Add our specific configuration
 ADD supervisor_conf/httpd.conf supervisor_conf/php.conf /etc/supervisor/conf.d/
