@@ -2,6 +2,7 @@
 ## INSTALL libio-socket-ssl-perl,libemail-simple-perl on docker
 
 use Net::SMTP;
+use Net::SMTPS;
 use Email::Simple;
 use warnings;
 
@@ -89,10 +90,15 @@ if($debug){
   
 }
 
-$smtp = Net::SMTP->new($mailhost, Port=>$mailport) or die "Unable to contact SMTP Server";
 if ($starttls){
+  $smtp = Net::SMTPS->new($mailhost, Port=>$mailport) or die "Unable to contact SMTP Server";
   $smtp->starttls;
 }
+else
+{
+  $smtp = Net::SMTP->new($mailhost, Port=>$mailport) or die "Unable to contact SMTP Server";
+}
+
 if($mailuser){
   $smtp->auth($mailuser,$mailpass);
 }
