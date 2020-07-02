@@ -4,6 +4,7 @@
 use Net::SMTP;
 use Net::SMTPS;
 use Email::Simple;
+use Email::Address::XS;
 use warnings;
 
 ##INIT SMTP Parameters
@@ -36,30 +37,18 @@ my $email = Email::Simple->new($mailin);
 my @rcpt;
 
 foreach ($email->header("to")){
-  if ($_ =~ /.*<(.*?)>/){
-    push(@rcpt,$1);
-  }
-  else{
-    push(@rcpt,$_);
-  }
+  my @toaddr = Email::Address::XS->parse($email->header("to"));
+  push @rcpt, @toaddr;
 }
 
 foreach ($email->header("cc")){
-  if ($_ =~ /.*<(.*?)>/){
-    push (@rcpt,$1);
-  }
-  else{
-    push (@rcpt,$_);
-  }
+  my @ccaddr = Email::Address::XS->parse($email->header("cc"));
+  push @rcpt, @ccaddr;
 }
 
 foreach ($email->header("bcc")){
-  if ($_ =~ /.*<(.*?)>/){
-    push(@rcpt,$1);
-  }
-  else{
-    push(@rcpt,$_);
-  }
+  my @bccaddr = Email::Address::XS->parse($email->header("bcc"));
+  push @rcpt, @bccaddr;
 }
 
 if($debug){
@@ -77,7 +66,7 @@ if($debug){
       $mhsmtp->mail($mailfrom);
     }
     foreach (@rcpt){
-      $mhsmtp->recipient($_);
+      $mhsmtp->recipient($_->address());
     }
     $mhsmtp->data();
     foreach (@mailheaders){
@@ -109,7 +98,7 @@ else{
   $smtp->mail($mailfrom);
 }
 foreach (@rcpt){
-  $smtp->recipient($_);
+  $smtp->recipient($_->address());
 }
 $smtp->data();
 foreach (@mailheaders){
