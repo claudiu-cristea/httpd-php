@@ -101,6 +101,9 @@ if($ENV{SMTP_KEEP_FROM}){
 }
 else{
   $smtp->mail($mailfrom);
+  $from = Email::Address::XS->parse($email->header("from"));
+  $from->address($mailfrom);
+  $email->header_raw_set("From",$from->as_string());
 }
 foreach (@rcpt){
   $smtp->recipient($_->address());
