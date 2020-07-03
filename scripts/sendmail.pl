@@ -15,6 +15,11 @@ else{
   die "No smtp server configured";
 }
 
+if ($mailhost eq 'bananas'){
+  ## Tests, nothing to do
+  exit;
+}
+
 $mailfrom = $ENV{SMTP_FROM};
 $mailport = $ENV{SMTP_PORT};
 $mailuser = $ENV{SMTP_USERNAME};
