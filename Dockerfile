@@ -4,7 +4,7 @@ FROM ubuntu:18.04 as httpd-php
 # Build arguments
 ENV DEBIAN_FRONTEND=noninteractive
 ARG php_version="5.6"
-ARG php_modules="sqlite curl soap bz2 calendar exif mysql opcache zip xsl intl mcrypt yaml mbstring ldap sockets iconv gd redis memcached tidy"
+ARG php_modules="sqlite curl soap bz2 calendar exif mysql opcache zip xsl intl mcrypt yaml mbstring ldap sockets iconv gd redis memcached tidy pgsql"
 ARG apache2_modules="proxy_fcgi setenvif rewrite"
 ARG composer_version="1.9.3"
 
@@ -34,9 +34,10 @@ ADD scripts/run.sh scripts/install-base.sh /scripts/
 RUN /scripts/install-base.sh
 ADD scripts/sendmail.pl /scripts/
 RUN chmod a+x /scripts/sendmail.pl
+ADD rsyslog_conf/drupal.conf /etc/rsyslog.d/drupal.conf
 
 # Add our specific configuration
-ADD supervisor_conf/httpd.conf supervisor_conf/php.conf /etc/supervisor/conf.d/
+ADD supervisor_conf/httpd.conf supervisor_conf/php.conf supervisor_conf/rsyslog.conf /etc/supervisor/conf.d/
 ADD apache2_conf /etc/apache2
 ADD php_conf /etc/php/${php_version}/mods-available
 ADD phpfpm_conf /etc/php/${php_version}/fpm/pool.d
@@ -91,4 +92,3 @@ ARG oci8_version="2.0.12"
 ENV oci8_version=${oci8_version}
 ADD scripts/install-oci.sh /scripts/
 RUN /scripts/install-oci.sh
-

@@ -24,6 +24,8 @@ modules=$(printf "php${php_version}-%s " ${php_modules})
 apt-get install -y apache2 php${php_version}-fpm ${modules}
 ### Perl dependencies
 apt install -y libio-socket-ssl-perl libemail-simple-perl libnet-smtps-perl libnet-smtp-ssl-perl libnet-smtp-tls-perl libnet-smtpauth-perl libemail-address-xs-perl
+### Rsyslog
+apt install -y rsyslog
 
 apt-get autoremove software-properties-common -y --purge
 apt-get clean
