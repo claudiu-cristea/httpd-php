@@ -23,3 +23,13 @@ apt-get clean
 rm -rf /var/lib/apt/lists/*
 rm -rf /tmp/*
 rm -Rf /root/.composer/cache
+
+if [ "${xdebug_enabled}" != "1" ]
+then
+  phpdismod xdebug
+fi
+
+if [ "${blackfire_enabled}" != "1" ]
+then
+  phpdismod blackfire
+fi

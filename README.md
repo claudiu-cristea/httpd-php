@@ -62,17 +62,19 @@ docker build --build-arg php_version=5.6 --target httpd-php -t fpfis/httpd-php:5
 The [Dockerfile](Dockerfile) is a multistage file containing multiple targets to build
 
 ## Build arguments
-| arg              | Description                                    | Default  
-|------------------|------------------------------------------------|----------
-|`php_version`     | Version of php to build                        | `5.6`
-|`php_modules`     | List of PHP extensions to install              | `curl soap bz2 calendar exif mysql opcache zip xsl intl mcrypt yaml mbstring ldap sockets iconv gd redis memcached tidy`
-|`oci8_version`    | Version of oci8 library to install (full)      | `2.0.12`
-|`apache2_modules` | List of Apache modules to enable after install | `proxy_fcgi setenvif rewrite`
-|`dev_packages`    | Additional packages to install the dev image   | `gnupg wget curl nano unzip patch git rsync make php${php_version}-xdebug`
-|`composer_version`| Version of Composer to install the dev image   | `1.9.3`
-|`drush_version`   | Version of Drush to install the dev image      | `8.2.3`
-|`USER_ID`         | User ID to use for Apache and PHP              | `1000`
-|`GROUP_ID`        | Group ID to use for Apache and PHP             | `1000`
+| arg               | Description                                    | Default
+|-------------------|------------------------------------------------|----------
+|`php_version`      | Version of php to build                        | `5.6`
+|`php_modules`      | List of PHP extensions to install              | `curl soap bz2 calendar exif mysql opcache zip xsl intl mcrypt yaml mbstring ldap sockets iconv gd redis memcached tidy`
+|`oci8_version`     | Version of oci8 library to install (full)      | `2.0.12`
+|`apache2_modules`  | List of Apache modules to enable after install | `proxy_fcgi setenvif rewrite`
+|`dev_packages`     | Additional packages to install the dev image   | `gnupg wget curl nano unzip patch git rsync make php${php_version}-xdebug`
+|`xdebug_enabled`   | If XDebug is enabled on start                  | `1`
+|`blackfire_enabled`| If Blackfire is enabled on start               | `1`
+|`composer_version` | Version of Composer to install the dev image   | `1.9.3`
+|`drush_version`    | Version of Drush to install the dev image      | `8.2.3`
+|`USER_ID`          | User ID to use for Apache and PHP              | `1000`
+|`GROUP_ID`         | Group ID to use for Apache and PHP             | `1000`
 
 
 ## Contribute

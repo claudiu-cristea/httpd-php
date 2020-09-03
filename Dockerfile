@@ -74,6 +74,8 @@ RUN /scripts/install-ci.sh && \
 FROM httpd-php-ci as httpd-php-dev
 ADD supervisor_conf/shell.conf /etc/supervisor/conf.d
 ARG dev_packages="php${php_version}-xdebug"
+ARG xdebug_enabled="1"
+ARG blackfire_enabled="1"
 ADD scripts/install-dev.sh /scripts/
 RUN /scripts/install-dev.sh && \
     phpdismod 95-prod && \
